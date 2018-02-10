@@ -58,7 +58,7 @@ class Deck extends Component {
     componentWillUpdate(){
         // Android specific
         // noinspection JSUnresolvedVariable
-        UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true)
+        UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
         LayoutAnimation.spring();
     }
 
