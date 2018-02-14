@@ -1,3 +1,4 @@
 .idea/*
 functions/service_account.json
 functions/node_modules
+functions/twilio_keys.js
