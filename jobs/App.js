@@ -27,6 +27,10 @@ export default class App extends React.Component {
                       })}
               })
           }
+      }, {
+          navigationOptions: {
+              tabBarVisible: false
+          }
       });
 
       return (
