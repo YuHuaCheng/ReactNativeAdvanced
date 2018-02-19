@@ -2,7 +2,8 @@ import axios from 'axios';
 import qs from 'qs';
 
 import {
-    FETCH_JOBS
+    FETCH_JOBS,
+    LIKE_JOB
 } from './types';
 
 const JOB_ROOT_URL = 'https://jobs.github.com/positions.json?';
@@ -23,5 +24,12 @@ export const fetchJobs = (region, callback) => async dispatch => {
         callback();
     } catch(err) {
         console.error(err);
+    }
+};
+
+export const likeJob = (job) => {
+    return {
+        type: LIKE_JOB,
+        payload: job
     }
 };

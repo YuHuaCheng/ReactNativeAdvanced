@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, Button } from 'react-native';
-// import { Button } from 'react-native-elements';
+import {
+    ScrollView,
+    Platform,
+    Button,
+    View,
+    Text,
+    Linking
+} from 'react-native';
+import { connect } from 'react-redux';
+import { Card } from 'react-native-elements';
 
 class ReviewScreen extends Component {
     // noinspection JSUnusedGlobalSymbols
@@ -11,8 +19,6 @@ class ReviewScreen extends Component {
                 <Button
                     title="Settings"
                     onPress={() => navigation.navigate('settings')}
-                    // backgroundColor="rgba(0,0,0,0)"
-                    // color="rgba(0, 122, 255, 1)"
                 />
             ),
             headerStyle: {
@@ -21,19 +27,44 @@ class ReviewScreen extends Component {
         }
     };
 
+    renderLikedJobs(){
+        return this.props.likedJobs.map(job => {
+            return (
+                <Card key={job.id}>
+                    <View style={{ height: 200 }}>
+                        <View style={styles.detailWrapper}>
+                            <Text style={styles.italicsStyle}>{job.company}</Text>
+                            <Text style={styles.italicsStyle}>10 days ago</Text>
+                        </View>
+                    </View>
+                </Card>
+            )
+        })
+    }
+
     render(){
         return(
-            <View>
-                <Text>ReviewScreen</Text>
-                <Text>ReviewScreen</Text>
-                <Text>ReviewScreen</Text>
-                <Text>ReviewScreen</Text>
-                <Text>ReviewScreen</Text>
-                <Text>ReviewScreen</Text>
-            </View>
+            <ScrollView>
+                {this.renderLikedJobs()}
+            </ScrollView>
         )
     }
 }
 
-export default ReviewScreen;
+const styles = {
+    detailWrapper: {
+        marginBottom: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+    italicsStyle: {
+        fontStyle: 'italic'
+    }
+};
+
+const mapStateToProps = (state) => {
+    return { likedJobs: state.likedJobs }
+};
+
+export default connect(mapStateToProps)(ReviewScreen);
 
