@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
 
 import { fetchJobs } from '../actions'
 
 class MapScreen extends Component {
+    // noinspection JSUnusedGlobalSymbols
+    static navigationOptions = {
+        title: "Map",
+        tabBarIcon: ({ tintColor }) => {
+                return (
+                    <Icon
+                        name='my-location'
+                        size={25}
+                        color={tintColor}
+                    />
+                )
+            }
+    };
+
     state = {
         region: { // initial region when the view is loaded
             longitude: -122,

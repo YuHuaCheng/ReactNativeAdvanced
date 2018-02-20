@@ -2,15 +2,29 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { MapView } from 'expo';
-import { Card } from 'react-native-elements';
+import { Card, Button, Icon } from 'react-native-elements';
 import HTML from 'react-native-render-html';
 
 import { likeJob } from '../actions/job_actions';
 import Swipe from '../components/Swipe';
 
 class DeckScreen extends Component {
+    // noinspection JSUnusedGlobalSymbols
+    static navigationOptions = {
+        title: "Jobs",
+        tabBarIcon: ({ tintColor }) => {
+            return (
+                <Icon
+                    name='description'
+                    size={25}
+                    color={tintColor}
+                />
+            )
+        }
+    };
 
-    renderCard(job){
+
+    renderCard = (job) => {
         return (
             <Card
                 title={job.title}
@@ -35,13 +49,23 @@ class DeckScreen extends Component {
 
             </Card>
         )
-    }
+    };
 
-    renderNoMoreCards() {
+    renderNoMoreCards = () => {
+        const { navigation } = this.props;
+
         return (
-            <Card title="No more jobs" />
+            <Card title="No More Jobs">
+                <Button
+                    title='Back To Map'
+                    large
+                    icon={{ name: 'my-location' }}
+                    backgroundColor="#03A9F4"
+                    onPress={() => {navigation.navigate('map')}}
+                />
+            </Card>
         )
-    }
+    };
 
     render(){
         return(
