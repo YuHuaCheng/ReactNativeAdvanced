@@ -26,6 +26,7 @@ export default class App extends React.Component {
                           settings: { screen: SettingScreen }
                       })}
               }, {
+                  tabBarPosition: 'bottom',
                   tabBarOptions: {
                       labelStyle: { fontSize: 10 }
                   }
